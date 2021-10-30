@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage-style.css') }}">
+
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <title></title>
+
+  </head>
+  <body>
+  	  <h1>Items List:</h1>
+  {% if items %}
+      {% for item in items %}
+      Item name : {{item.name}}<br>
+      Image: {{item.image}}<br>
+      Summary: {{item.description}}<br>
+      Brand: {{item.brand}}<br>
+      Category: {{item.category}}<br>
+      Price ($): {{item.price}}<br>
+      Quantity: {{item.quantity}}<br><br>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

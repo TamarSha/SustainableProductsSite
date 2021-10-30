@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shopitempage-style.css') }}">
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <title>Shoping Eco Products</title>
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#!">Popular Items </a></li>
+                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <a href="{{url_for('cart')}}" class="btn btn-outline-dark" role="button" submit="store_cart_items()">
+                        Cart
+                        <i class="bi-cart-fill me-1"></i>
+                        <span id="cart" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!--<form method="POST"><input name="text"><input type="submit"></form>-->
+    <!-- Product section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{url_for('static', filename = 'img/'+items[ItemIdx].image)}}" alt="..." /></div>
+                <div class="col-md-6">
+                    <div id="itemID" class="small mb-1">
+                        Item ID#: {{ItemIdx+1}}
+                    </div>
+                    <h1 class="display-5 fw-bolder">
+                        {% if items %}
+                        {% if items[1] %}
+                        {{items[ItemIdx].name}}<br>
+                        {% endif %}
+                        {% endif %}
+                    </h1>
+                    <div class="fs-5 mb-5">
+                        <span class="text-decoration-line-through">
+                            {% if items %}
+                            {% if items[1] %}
+                            {{items[ItemIdx].pre_price}}$
+                            {% endif %}
+                            {% endif %}
+                        </span>
+                        <span>
+                            {% if items %}
+                            {% if items[1] %}
+                            {{items[ItemIdx].price}}$<br>
+                            {% endif %}
+                            {% endif %}
+                        </span>
+                    </div>
+                    <p class="lead">
+                        {% if items %}
+                        {% if items[1] %}
+                        {{items[ItemIdx].description}}<br>
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                    <div class="d-flex">
+                        <form method="POST">
+                            <input class="form-control text-center me-3" name="num_items" id="inputQuantity" type="text" value="1" style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit" onclick="update_cart_value()">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Related items section-->
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">Related products</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {%for item in itemsInCategory%}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{url_for('static', filename = 'img/'+item.image)}}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{item.name}}<br></h5>
+                                <!-- Product price-->
+                                {{item.price}}$<br>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{url_for('shopitem', id=item.id)}}">View options</a></div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Tamar Shabtai 2021</p></div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
+

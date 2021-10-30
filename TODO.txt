@@ -1,0 +1,9 @@
+Copy counter to payment page 
+Continue to payment 
+Related items section
+Add About page 
+Popular Items
+New Arrivals
+Change page background 
+
+- images: 450x300 pixels 

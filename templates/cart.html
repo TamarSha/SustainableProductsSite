@@ -1,0 +1,136 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage-style.css') }}">
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    <title>Purchase Items</title>
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table, th, td {
+            border: 0px solid black;
+        }
+
+            table.center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        th, td {
+            padding: 0px;
+        }
+    </style>
+    <link href="../static/css/homepage-style.css" rel="stylesheet" type="text/css">
+</head>
+<body onload="retrieve_cart_items()">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{url_for('shopitem', id=1)}}">Shop an item</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                            <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <a href="{{url_for('cart')}}" class="btn btn-outline-dark" role="button">
+                        Cart
+                        <i class="bi-cart-fill me-1"></i>
+                        <span id="cart" class="badge bg-dark text-white ms-1 rounded-pill">{{num_items}}</span>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <table>
+        <tr>
+            <th width="60%" ">
+                <!--Checkout Form-->
+                <div class="container px-1 my-1">
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <div class="form-floating mb-1">
+                            <input class="form-control" id="fullName" type="text" placeholder="Full Name" data-sb-validations="required" />
+                            <label for="fullName">Full Name</label>
+                            <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
+                            <label for="emailAddress">Email Address</label>
+                            <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                            <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="phoneNumber" type="text" placeholder="Phone Number" data-sb-validations="required" />
+                            <label for="phoneNumber">Phone Number</label>
+                            <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">Phone Number is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="shipping" aria-label="shipping">
+                                <option value="Israel">Israel</option>
+                                <option value="US">US</option>
+                            </select>
+                            <label for="shipping">Shipping</label>
+                        </div>
+                        <div class="d-none" id="submitSuccessMessage">
+                            <div class="text-center mb-3">
+                                <div class="fw-bolder">Form submission successful!</div>
+                                <p>To activate this form, sign up at</p>
+                                <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                            </div>
+                        </div>
+                        <div class="d-none" id="submitErrorMessage">
+                            <div class="text-center text-danger mb-3">Error sending message!</div>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </th>
+            <th>
+                <!-- Section-->
+                <section class="px-5">
+                    <div class="container px-5 my-5">
+                        <div class="col mb-5 ">
+                            <div class="card w-100">
+                                <!-- Product image-->
+                                <img class="card-img-top" src="{{url_for('static', filename = 'img/'+items[s_item_idx].image)}}" alt="..." />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">{{items[s_item_idx].name}}</h5>
+                                        <!-- Product price-->
+                                        ${{items[s_item_idx].pre_price}} - ${{items[s_item_idx].price}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </th>
+        </tr>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                <!-- Section-->
+                <section class="px-5">
+                </section>
+            </th>
+        </tr>
+    </table>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>
