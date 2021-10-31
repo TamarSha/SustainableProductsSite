@@ -111,7 +111,9 @@
                                         <!-- Product name-->
                                         <h5 class="fw-bolder">{{items[s_item_idx].name}}</h5>
                                         <!-- Product price-->
-                                        ${{items[s_item_idx].pre_price}} - ${{items[s_item_idx].price}}
+                                        {{items[s_item_idx].price}}$
+                                        <!-- Product quantity-->
+                                        <br>Quantity: {{num_items}}
                                     </div>
                                 </div>
                             </div>
