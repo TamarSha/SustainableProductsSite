@@ -1,1 +1,1 @@
-web: gunicorn tamarableweb:app
+web: gunicorn app:app
