@@ -61,7 +61,6 @@ six==1.14.0
 SQLAlchemy==1.4.22
 sqlalchemy-orm==1.2.2
 ssh-import-id==5.10
-system-service==0.3
 typing-extensions==3.10.0.0
 typing-inspect==0.7.1
 unattended-upgrades==0.1
