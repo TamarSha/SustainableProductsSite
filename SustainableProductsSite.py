@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask import redirect, url_for, jsonify 
 from database import *
 from models import *
+from Pythonblob import *
 
 import random 
 
@@ -43,7 +44,7 @@ def cart():
 	num_items = num_selected_items
 	num_selected_items = 0 
 	# print("s_item_id:", s_item_idx, "num_items:", num_items) 
-	return render_template('cart.html', items=query_all(), s_item_idx=s_item_idx, num_items=num_items) 
+	return render_template('cart.html', items=query_all(), s_item_idx=s_item_idx, num_items=num_items, bloblist=bloblist,users=users, x=x)
 
 ## And doesn't go after this line.  ##
 if __name__ == "__main__":  # Makes sure this is the main process

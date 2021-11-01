@@ -54,7 +54,7 @@
     </nav>
     <table>
         <tr>
-            <th width="60%" ">
+            <th width="60%">
                 <!--Checkout Form-->
                 <div class="container px-1 my-1">
                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
@@ -95,6 +95,20 @@
                             <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
                         </div>
                     </form>
+                    <h5>Reviews:
+                        {%for i in x %}
+                            {% if bloblist[i] > 0 %}
+                            <br>{{users[i]}}<br>
+                            ---Thank you for the nice review :)<br>
+                            {%elif bloblist[i] < 0 %}
+                            <br>{{users[i]}}<br>
+                                --Thank u for the review, we will check this out!<br>
+                            {%else%}
+                            <br>{{users[i]}}<br>
+                            <br>---We appricate your review
+                            {%endif%}
+                        {%endfor%}
+                    </h5>
                 </div>
             </th>
             <th>
