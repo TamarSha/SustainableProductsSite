@@ -33,7 +33,7 @@ def shopitem(id):
 		num_selected_items = request.form.get('num_items')
 		print(num_selected_items)
 	# Pass to the html:
-	return render_template("shopitem.html", ItemIdx=id-1, items=query_all(), itemsInCategory=itemsInCategory, users=users, bloblist=bloblist, x=x)
+	return render_template("shopitem.html", ItemIdx=id-1, items=query_all(), itemsInCategory=itemsInCategory)
 
 @app.route('/cart') 
 def cart():
@@ -44,7 +44,7 @@ def cart():
 	num_items = num_selected_items
 	num_selected_items = 0 
 	# print("s_item_id:", s_item_idx, "num_items:", num_items) 
-	return render_template('cart.html', items=query_all(), s_item_idx=s_item_idx, num_items=num_items) 
+	return render_template('cart.html', items=query_all(), s_item_idx=s_item_idx, num_items=num_items, users=users, bloblist=bloblist, x=x)
 
 ## And doesn't go after this line.  ##
 if __name__ == "__main__":  # Makes sure this is the main process
