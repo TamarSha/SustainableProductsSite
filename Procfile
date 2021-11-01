@@ -1,1 +1,1 @@
-web: gunicorn SustainableProductsSite:app
+web: gunicorn app:app
