@@ -1,2 +1,2 @@
-# aster4u
-Aster - Always for You
+# Sustainable Products Site
+For a better planet
